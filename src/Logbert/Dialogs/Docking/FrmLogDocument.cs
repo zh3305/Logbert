@@ -1028,9 +1028,9 @@ namespace Couchcoding.Logbert.Dialogs.Docking
             break;
         }
 
-        if (Settings.Default.TimeShiftValue != mTimeShiftValue.TotalMilliseconds)
+        if (Settings.Default.TimeShiftValue != newValue)
         {
-          Settings.Default.TimeShiftValue = mTimeShiftValue.TotalMilliseconds;
+          Settings.Default.TimeShiftValue = newValue;
           Settings.Default.SaveSettings();
         }
       }
@@ -1318,8 +1318,10 @@ namespace Couchcoding.Logbert.Dialogs.Docking
       ((FrmLogWindow)mLogWindow).OnLogMessageSelected += OnLogMessageSelected;
 
       LogDockPanel.Theme = ThemeManager.CurrentApplicationTheme.DockingTheme;
-
-      SetTimeshiftValue();
+      txtTimeShift.Text = ((int)Settings.Default.TimeShiftValue).ToString();
+      tsbTimeShift.Checked = true;
+      TsbTimeShiftClick(this, EventArgs.Empty);
+      // SetTimeshiftValue();
     }
 
     #endregion
